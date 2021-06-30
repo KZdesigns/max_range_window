@@ -1,4 +1,4 @@
-class Mystack
+class MyStack
     def initialize(store = [])
         @store = []
     end
