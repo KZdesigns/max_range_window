@@ -6,7 +6,7 @@ class MinMaxStack
     end
 
     def peek
-        @store.peek
+        @store.peek[:value] unless empty?
     end
 
     def size
@@ -18,15 +18,15 @@ class MinMaxStack
     end
 
     def max
-        @store.peek[:max]
+        @store.peek[:max] unless empty?
     end
 
     def min
-        @store.peek[:min]
+        @store.peek[:min] unless empty?
     end
 
     def pop
-        @store.pop
+        @store.pop[:value] unless empty?
     end
 
     def push(el)
@@ -40,12 +40,10 @@ class MinMaxStack
     private
 
     def max_value(el)
-        return el if @store.empty?
-        @store.peek[:max] < el ? el : @store.peek[:max]
+        empty? ? el : [max, el].max
     end
 
     def min_value(el)
-        return el if @store.empty?
-        @store.peek[:min] > el ? el : @store.peek[:min]
+       empty? ? el : [min, el].min
     end
 end
